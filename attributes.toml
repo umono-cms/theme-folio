@@ -1,0 +1,13 @@
+schema = "https://umono.dev/schemas/theme-attributes/v1"
+
+[address."post"]
+class = "folio-post"
+
+[address."post IMAGE"]
+sizes = "(min-width: 48rem) 41rem, 100vw"
+
+[address."post-list"]
+class = "folio-post-list"
+
+[address."page IMAGE"]
+sizes = "(min-width: 48rem) 41rem, 100vw"

@@ -1,0 +1,13 @@
+schema = "https://umono.dev/schemas/theme-manifest/v1"
+id = "umono/folio"
+contract = "umono/blog@v0.1"
+name = "Folio"
+version = "0.1.0"
+description = "A reading theme for long articles, on a paper-toned page."
+license = "MIT"
+homepage = "https://github.com/umono-cms/theme-folio"
+repository = "https://github.com/umono-cms/theme-folio"
+
+[[authors]]
+name = "Umono"
+url = "https://umono.io"

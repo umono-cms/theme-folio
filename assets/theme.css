@@ -1,0 +1,550 @@
+/*
+ * Folio: the official theme of umono/blog@v0.1.
+ *
+ * Folio is made for reading long articles: a paper-toned page, a serif
+ * designed for long-form text, a measure of about 66 characters and a
+ * generous line height. Colors and sizes are set as custom properties on
+ * the root.
+ */
+
+/* Literata, SIL Open Font License 1.1 (see LICENSE). Variable in weight
+ * and optical size; Latin and Latin Extended subsets. */
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(fonts/literata-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(fonts/literata-latin-italic.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(fonts/literata-latin-ext.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: italic;
+  font-weight: 200 900;
+  font-display: swap;
+  src: url(fonts/literata-latin-ext-italic.woff2) format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* The page */
+
+:scope {
+  --paper: #f3ead8;
+  --paper-deep: #e9ddc4;
+  --ink: #2e2820;
+  --ink-soft: #665848;
+  --rule: #d8c9aa;
+  --accent: #8b3a24;
+  --highlight: #ead29a;
+  --measure: 34em;
+  --serif: "Literata", "Iowan Old Style", Georgia, serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  font-kerning: normal;
+  font-optical-sizing: auto;
+  padding-block: 0 4rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  :scope {
+    font-size: 1.1875rem;
+    padding-inline: 2rem;
+  }
+}
+
+:scope *,
+:scope *::before,
+:scope *::after {
+  box-sizing: border-box;
+}
+
+:scope > header,
+:scope > main,
+:scope > footer {
+  max-inline-size: var(--measure);
+  margin-inline: auto;
+}
+
+::selection {
+  background-color: var(--highlight);
+  color: var(--ink);
+}
+
+/* Site header: the site name and the main menu */
+
+:scope > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-block: 2rem 1.25rem;
+  border-block-end: 1px solid var(--rule);
+}
+
+:scope > header > a {
+  color: var(--ink);
+  font-size: 1.35em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+:scope > header > a:hover {
+  color: var(--accent);
+}
+
+:scope > header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:scope > header nav > ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.25rem 1.25rem;
+}
+
+:scope > header nav li {
+  position: relative;
+  margin: 0;
+}
+
+:scope > header nav a {
+  display: inline-block;
+  padding-block: 0.15rem;
+  color: var(--ink-soft);
+  font-size: 0.95em;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+
+:scope > header nav a:hover {
+  color: var(--accent);
+}
+
+:scope > header nav a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+}
+
+/* Submenus are shown under their item where nothing can hover. */
+:scope > header nav li > ul {
+  padding-inline-start: 0.6em;
+  border-inline-start: 1px solid var(--rule);
+}
+
+:scope > header nav li > ul a {
+  font-size: 0.85em;
+}
+
+/* With a fine pointer that can hover, submenus open on hover and on focus. */
+@media (hover: hover) and (pointer: fine) {
+  :scope > header nav li > ul {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 100%;
+    inset-inline-start: -0.75rem;
+    min-inline-size: 12rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background-color: var(--paper);
+    box-shadow: 0 0.5rem 1.5rem rgb(46 40 32 / 0.08);
+  }
+
+  :scope > header nav li > ul li > ul {
+    inset-block-start: -0.45rem;
+    inset-inline-start: 100%;
+  }
+
+  :scope > header nav li:hover > ul,
+  :scope > header nav li:focus-within > ul {
+    display: block;
+  }
+
+  :scope > header nav li > ul a {
+    display: block;
+    font-size: 0.9em;
+  }
+}
+
+/* Main column */
+
+:scope > main {
+  padding-block: 2.5rem 0;
+}
+
+/* Text */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block: 2em 0.6em;
+  font-weight: 600;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.9em, 1.5em + 1.5vw, 2.4em);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: 1.45em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1em;
+}
+
+h5,
+h6 {
+  font-style: italic;
+  font-weight: 500;
+}
+
+main > :first-child {
+  margin-block-start: 0;
+}
+
+p {
+  margin-block: 0 1.15em;
+  text-wrap: pretty;
+}
+
+main p,
+main li {
+  hyphens: auto;
+}
+
+strong {
+  font-weight: 650;
+}
+
+a {
+  color: var(--accent);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+ul,
+ol {
+  margin-block: 0 1.15em;
+  padding-inline-start: 1.5em;
+}
+
+li {
+  margin-block: 0.3em;
+}
+
+li::marker {
+  color: var(--ink-soft);
+}
+
+li > ul,
+li > ol {
+  margin-block: 0.3em 0;
+}
+
+blockquote {
+  margin-block: 1.75em;
+  margin-inline: 0;
+  padding-inline-start: 1.25em;
+  border-inline-start: 2px solid var(--rule);
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+blockquote em {
+  font-style: normal;
+}
+
+blockquote > :last-child {
+  margin-block-end: 0;
+}
+
+hr {
+  margin-block: 2.5em;
+  border: 0;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+hr::after {
+  content: "⁂" / "";
+  font-size: 1.1em;
+}
+
+code {
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  background-color: var(--paper-deep);
+  font-family: var(--mono);
+  font-size: 0.84em;
+  overflow-wrap: anywhere;
+}
+
+pre {
+  margin-block: 0 1.15em;
+  padding: 1em 1.25em;
+  border-radius: 3px;
+  background-color: var(--paper-deep);
+  font-family: var(--mono);
+  line-height: 1.5;
+  overflow-x: auto;
+  tab-size: 4;
+}
+
+pre code {
+  padding: 0;
+  background-color: transparent;
+  font-size: 0.82em;
+  overflow-wrap: normal;
+}
+
+table {
+  inline-size: 100%;
+  margin-block: 0 1.15em;
+  border-collapse: collapse;
+  font-size: 0.9em;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: 0.4em 0.75em;
+  border-block-end: 1px solid var(--rule);
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: break-word;
+}
+
+th {
+  border-block-end-color: var(--ink-soft);
+  font-weight: 600;
+}
+
+picture {
+  display: block;
+  margin-block: 0 1.5em;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+details {
+  margin-block: 0 1.15em;
+  padding-block: 0.5em;
+  border-block: 1px solid var(--rule);
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+details:open > summary {
+  margin-block-end: 0.5em;
+}
+
+/* Post: the article, its cover and the related posts */
+
+:scope.folio-post > main > article > header {
+  margin-block-end: 2rem;
+}
+
+:scope.folio-post > main > article > header > h1 {
+  margin-block: 0 0.4em;
+}
+
+:scope.folio-post > main > article > header > p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.05em;
+}
+
+:scope.folio-post > main > article > picture {
+  margin-block: 0 2.25rem;
+}
+
+:scope.folio-post > main > article > picture img {
+  border-radius: 2px;
+}
+
+:scope.folio-post > main > aside {
+  margin-block-start: 3.5rem;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--rule);
+}
+
+:scope.folio-post > main > aside > h2 {
+  margin-block: 0 0.75em;
+  color: var(--ink-soft);
+  font-size: 0.95em;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+}
+
+:scope.folio-post > main > aside > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:scope.folio-post > main > aside li {
+  margin-block: 0.4em;
+}
+
+/* Post list: one entry per post, separated by rules */
+
+:scope.folio-post-list > main > h1 {
+  margin-block: 0 1em;
+}
+
+:scope.folio-post-list > main > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:scope.folio-post-list > main > ul > li {
+  margin: 0;
+  padding-block: 1.75rem;
+  border-block-start: 1px solid var(--rule);
+}
+
+:scope.folio-post-list > main > ul > li:first-child {
+  padding-block-start: 0.5rem;
+  border-block-start: 0;
+}
+
+:scope.folio-post-list > main > ul > li > article > h2 {
+  margin-block: 0 0.4em;
+}
+
+:scope.folio-post-list > main > ul > li > article > h2 > a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+:scope.folio-post-list > main > ul > li > article > h2 > a:hover {
+  color: var(--accent);
+}
+
+:scope.folio-post-list > main > ul > li > article > p {
+  margin-block: 0 0.6em;
+}
+
+:scope.folio-post-list > main > ul > li > article > a {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+
+:scope.folio-post-list > main > ul > li > article > a:hover {
+  text-decoration-line: underline;
+}
+
+:scope.folio-post-list > main > ul > li > article > a::after {
+  content: "\00a0→" / "";
+}
+
+:scope.folio-post-list > main > ul > li > article > a:dir(rtl)::after {
+  content: "\00a0←" / "";
+}
+
+/* Site footer */
+
+:scope > footer {
+  margin-block-start: 3.5rem;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--rule);
+  color: var(--ink-soft);
+}
+
+/* The size is set on the children so that the footer keeps the measure. */
+:scope > footer > * {
+  font-size: 0.875em;
+}
+
+:scope > footer:empty {
+  border-block-start: 0;
+}
+
+:scope > footer h2,
+:scope > footer h3 {
+  margin-block: 0 0.5em;
+  color: var(--ink);
+  font-size: 0.95em;
+}
+
+:scope > footer a {
+  color: inherit;
+}
+
+:scope > footer a:hover {
+  color: var(--accent);
+}
+
+:scope > footer > :last-child {
+  margin-block-end: 0;
+}
