@@ -336,7 +336,7 @@ code {
   background-color: var(--paper-deep);
   font-family: var(--mono);
   font-size: 0.84em;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 pre {
